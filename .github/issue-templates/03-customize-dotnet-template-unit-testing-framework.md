@@ -1,5 +1,5 @@
 ---
-title: "🔧 Customize .NET Template for Your Project and build Unit Testing Framework"
+title: "3 - Customize .NET Template for Your Project and build Unit Testing Framework"
 labels:
   - setup
   - template
