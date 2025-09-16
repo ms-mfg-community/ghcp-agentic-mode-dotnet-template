@@ -6,12 +6,56 @@ labels:
 assignees: []
 ---
 
-Set up GitHub Copilot for optimal development experience:
+Using the [reference documentation](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/customize-the-agent-environment)
 
-- [ ] Enable GitHub Copilot for this repository
-- [ ] Configure .github/copilot/instructions.md
-- [ ] Set up team conventions and coding standards
-- [ ] Test Copilot suggestions with your codebase
+and this sample:
+
+```
+name: "Copilot Setup Steps"
+
+# Automatically run the setup steps when they are changed to allow for easy validation, and
+# allow manual testing through the repository's "Actions" tab
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+  pull_request:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+
+jobs:
+  # The job MUST be called `copilot-setup-steps` or it will not be picked up by Copilot.
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+
+    # Set the permissions to the lowest permissions possible needed for your steps.
+    # Copilot will be given its own token for its operations.
+    permissions:
+      # If you want to clone the repository as part of your setup steps, for example to install dependencies, you'll need the `contents: read` permission. If you don't clone the repository in your setup steps, Copilot will do this for you automatically after the steps complete.
+      contents: read
+
+    # You can define any steps you want, and they will run before the agent starts.
+    # If you do not check out your code, Copilot will do this for you.
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install JavaScript dependencies
+        run: npm ci
+
+```
+
+Build a dependency file for the Coding Agent to preinstall and use required dependencies for this project. 
+Follow Instructions Files located in this repository, ad make sure this relates to needed dependencies for the appropriate .NET Version.  
+
+Run and validates a build of the application using these dependencies
 
 ## Resources
 
