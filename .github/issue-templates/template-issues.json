@@ -1,0 +1,22 @@
+{
+  "issues": [
+    {
+      "title": "Getting Started with Your New Repository",
+      "body": "Welcome to your new repository created from the ghcp-agentic-mode-dotnet-template!\n\nThis issue contains important setup steps:\n\n- [ ] Review the README.md file\n- [ ] Update project configuration\n- [ ] Set up your development environment\n- [ ] Configure CI/CD pipelines\n\nFeel free to customize this checklist for your needs.",
+      "labels": ["documentation", "good first issue"],
+      "assignees": []
+    },
+    {
+      "title": "Configure GitHub Copilot for Your Project",
+      "body": "Set up GitHub Copilot for optimal development experience:\n\n- [ ] Enable GitHub Copilot for this repository\n- [ ] Configure .github/copilot/instructions.md\n- [ ] Set up team conventions and coding standards\n- [ ] Test Copilot suggestions with your codebase\n\nResources:\n- [GitHub Copilot Documentation](https://docs.github.com/en/copilot)\n- [Best Practices Guide](https://github.com/features/copilot/plans)",
+      "labels": ["enhancement", "copilot"],
+      "assignees": []
+    },
+    {
+      "title": "Customize Template for Your Needs",
+      "body": "This repository was created from a template. Here are suggested customizations:\n\n- [ ] Update package/project name in solution files\n- [ ] Modify namespace to match your organization\n- [ ] Update license if needed\n- [ ] Configure repository settings\n- [ ] Set up branch protection rules\n- [ ] Configure security settings\n\nRemember to remove or update any template-specific content!",
+      "labels": ["setup", "template"],
+      "assignees": []
+    }
+  ]
+}

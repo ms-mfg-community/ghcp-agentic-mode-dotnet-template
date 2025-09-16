@@ -1,0 +1,15 @@
+{
+  "variables": {
+    "repository_name": "${{ github.event.repository.name }}",
+    "owner": "${{ github.event.repository.owner.login }}",
+    "template_name": "ghcp-agentic-mode-dotnet-template"
+  },
+  "issues": [
+    {
+      "title": "Welcome to {{repository_name}}",
+      "bodyFile": "welcome-issue.md",
+      "labels": ["welcome", "setup"],
+      "assignees": ["{{owner}}"]
+    }
+  ]
+}
