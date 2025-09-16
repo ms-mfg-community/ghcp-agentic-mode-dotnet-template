@@ -3,6 +3,7 @@ name: Create Template Issues
 on:
   # Trigger when repository is created from template
   create:
+  workflow_dispatch:
 
 jobs:
   create-issues:
