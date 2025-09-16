@@ -35,11 +35,11 @@ jobs:
             const fs = require('fs');
             const path = require('path');
             const matter = require('gray-matter');
-            const glob = require('glob');
+            const globModule = require('glob');
             
             // Find all markdown files in the issue templates directory
             const templateDir = path.join(process.env.GITHUB_WORKSPACE, '.github/issue-templates');
-            const files = glob.sync('*.md', { cwd: templateDir });
+            const files = globModule.sync('*.md', { cwd: templateDir });
             
             // Sort files to maintain order
             files.sort();
