@@ -1,0 +1,72 @@
+name: Create Template Issues
+
+on:
+  # Trigger when repository is created from template
+  create:
+
+jobs:
+  create-issues:
+    # Only run if this is the initial repository creation
+    if: github.event.ref_type == null
+    runs-on: ubuntu-latest
+    
+    permissions:
+      issues: write
+      contents: read
+      
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install dependencies
+        run: |
+          npm install gray-matter glob
+        
+      - name: Create Issues from Markdown Files
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            const matter = require('gray-matter');
+            const glob = require('glob');
+            
+            // Find all markdown files in the issue templates directory
+            const templateDir = path.join(process.env.GITHUB_WORKSPACE, '.github/issue-templates');
+            const files = glob.sync('*.md', { cwd: templateDir });
+            
+            // Sort files to maintain order
+            files.sort();
+            
+            console.log(`Found ${files.length} issue template(s)`);
+            
+            for (const file of files) {
+              const filePath = path.join(templateDir, file);
+              const fileContent = fs.readFileSync(filePath, 'utf8');
+              
+              // Parse front matter and content
+              const { data: frontMatter, content } = matter(fileContent);
+              
+              try {
+                const issue = await github.rest.issues.create({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  title: frontMatter.title || file.replace('.md', '').replace(/^\d+-/, '').replace(/-/g, ' '),
+                  body: content.trim(),
+                  labels: frontMatter.labels || [],
+                  assignees: frontMatter.assignees || [],
+                  milestone: frontMatter.milestone || undefined
+                });
+                
+                console.log(`✅ Created issue #${issue.data.number}: ${frontMatter.title}`);
+              } catch (error) {
+                console.error(`❌ Failed to create issue from ${file}: ${error.message}`);
+              }
+            }
+            
+            console.log('Issue creation completed!');
