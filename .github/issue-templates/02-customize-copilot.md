@@ -1,5 +1,5 @@
 ---
-title: Configure GitHub Copilot for Your Project
+title: 2 - Configure GitHub Copilot for Your Project
 labels:
   - enhancement
   - copilot
