@@ -1,5 +1,5 @@
 ---
-title: "🚀 Getting Started with Your New Repository"
+title: "1 - Getting Started with Your New Repository"
 labels: 
   - documentation
   - good first issue
