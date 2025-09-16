@@ -26,88 +26,14 @@ This repository was created from the `ghcp-agentic-mode-dotnet-template`. Follow
 - [ ] Update connection strings and API endpoints
 - [ ] Configure logging settings
 
-### CI/CD Pipeline
-- [ ] Review and update `.github/workflows/` files
-- [ ] Configure build and test workflows for your needs
-- [ ] Set up deployment workflows
-- [ ] Add necessary secrets to GitHub repository settings
-- [ ] Configure code coverage and quality gates
+### Steps
+Build a Unit Testing GitHub Actions Pipeline
 
-### Dependencies and Packages
-```bash
-# Update all NuGet packages
-dotnet list package --outdated
-dotnet add package [PackageName] --version [Version]
-```
+Ensure the check can run every time a Push or PR into the Main Branch occurs, and fail on any tests that do not pass
 
-- [ ] Review all NuGet package dependencies
-- [ ] Remove unused packages
-- [ ] Add project-specific packages
-- [ ] Update to latest stable versions where appropriate
-- [ ] Document any version constraints
-
-### Code Cleanup
-- [ ] Remove template-specific example code
-- [ ] Delete unused controllers, services, or models
-- [ ] Clean up example API endpoints
-- [ ] Remove or update sample data and seeds
-- [ ] Update or remove template-specific tests
-
-### Docker Configuration (if applicable)
-- [ ] Update `Dockerfile` with correct project paths
-- [ ] Configure `docker-compose.yml` for your services
-- [ ] Set appropriate base images
-- [ ] Configure environment variables
-- [ ] Set up health checks
-
-### Security Configuration
-- [ ] Update CORS policies for your domains
-- [ ] Configure authentication and authorization
-- [ ] Set up proper secret management
-- [ ] Review and update security headers
-- [ ] Configure HTTPS/TLS settings
-
-### Database Setup (if applicable)
-- [ ] Update Entity Framework migrations
-- [ ] Configure database providers
-- [ ] Set up initial data migrations
-- [ ] Configure connection resilience
-- [ ] Document database schema
-
-## 🛠️ Useful Commands
-
-```bash
-# Rename namespaces across the solution (PowerShell)
-Get-ChildItem -Recurse -Filter *.cs | ForEach-Object {
-    (Get-Content $_.FullName) -replace 'OldNamespace', 'NewNamespace' | 
-    Set-Content $_.FullName
-}
-
-# Update project references
-dotnet sln rename-project OldName NewName
-
-# Clean and rebuild
-dotnet clean
-dotnet restore
-dotnet build
-```
-
-## 📚 Additional Resources
-
-- [.NET Project Structure Best Practices](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/common-web-application-architectures)
-- [ASP.NET Core Documentation](https://docs.microsoft.com/en-us/aspnet/core/)
-- [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/)
-- [.NET CLI Reference](https://docs.microsoft.com/en-us/dotnet/core/tools/)
-
-## ✅ Definition of Done
-
-This issue can be closed when:
-- [ ] All template references have been replaced
-- [ ] Project builds successfully with no warnings
-- [ ] All tests pass
-- [ ] Documentation has been updated
-- [ ] CI/CD pipelines run successfully
-- [ ] Application runs locally as expected
+All unit tests for the project should be run
+Analyze existing tests, consider adding separate jobs for each testing type, suite, or project in the solution that is tested
+Utilize Existing instructions files for specifics on Testing
 
 ---
 *This issue was automatically created when the repository was generated from a template.*
