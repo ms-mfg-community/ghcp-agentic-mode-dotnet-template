@@ -1,5 +1,5 @@
 ---
-title: "👨‍💻 Set Up Development Workflow and Standards"
+title: "👨‍💻 Extend Unit Testing"
 labels:
   - developer-experience
   - workflow
@@ -8,30 +8,33 @@ labels:
 assignees: []
 ---
 
-Establish a consistent development workflow and coding standards for the team.
+**Goal:** Extend the UnitTests project to begin testing methods in the Library.Infrastructure project
 
-## 🔄 Development Workflow Setup
+- Test Project Structure:
+All unit tests are located in the [UnitTests](vscode-file://vscode-app/c:/Users/codycarlson/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-browser/workbench/workbench.html) folder, with domain-specific tests organized under subfolders like ApplicationCore/LoanService and ApplicationCore/PatronService.
 
-### Git Configuration
-- [ ] Define branching strategy (Git Flow, GitHub Flow, etc.)
-- [ ] Set up branch naming conventions
-- [ ] Configure commit message standards
-- [ ] Set up pull request templates
-- [ ] Configure automatic branch deletion after merge
+- Test Factories:
 
-### Code Quality Tools
-- [ ] Configure `.editorconfig` for consistent formatting
-- [ ] Set up code analyzers and rulesets
-- [ ] Configure linting tools
-- [ ] Set up pre-commit hooks
-- [ ] Configure automatic code formatting
+Test data is generated using factory classes such as [LoanFactory](vscode-file://vscode-app/c:/Users/codycarlson/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-browser/workbench/workbench.html) and [PatronFactory](vscode-file://vscode-app/c:/Users/codycarlson/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-browser/workbench/workbench.html), which provide methods to create domain entities in various states for testing.
 
-### Pull Request Process
-- [ ] Create pull request template
-- [ ] Define review requirements
-- [ ] Set up automated checks
-- [ ] Configure status checks
-- [ ] Document review guidelines
+- Mocking Dependencies:
+
+The tests use NSubstitute to mock repository interfaces (e.g., [ILoanRepository](vscode-file://vscode-app/c:/Users/codycarlson/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-browser/workbench/workbench.html), [IPatronRepository](vscode-file://vscode-app/c:/Users/codycarlson/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-browser/workbench/workbench.html)), allowing isolation of the service logic from data access concerns.
+
+- Test Methods:
+
+Each test class (e.g., [ExtendLoanTest](vscode-file://vscode-app/c:/Users/codycarlson/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-browser/workbench/workbench.html), [RenewMembershipTest](vscode-file://vscode-app/c:/Users/codycarlson/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-browser/workbench/workbench.html)) contains multiple [Fact]-decorated methods, each verifying a specific scenario or business rule.
+
+- Assertions:
+
+Tests assert expected outcomes using xUnit's [Assert](vscode-file://vscode-app/c:/Users/codycarlson/AppData/Local/Programs/Microsoft%20VS%20Code/resources/app/out/vs/code/electron-browser/workbench/workbench.html) methods, checking both status enums and state changes on domain entities.
+
+- Test Execution:
+
+Tests are run using the command:
+```
+dotnet test tests/UnitTests/UnitTests.csproj
+```
 
 ## 📐 Coding Standards
 
